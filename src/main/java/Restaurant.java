@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import static java.time.temporal.ChronoUnit.MINUTES;
 import java.util.ArrayList;
@@ -20,7 +19,9 @@ public class Restaurant {
 
     public boolean isRestaurantOpen() {
         LocalTime currentTime = this.getCurrentTime();
-        return  MINUTES.between(openingTime, currentTime) > 0 && MINUTES.between(currentTime, closingTime) >= 0;
+        long differentOpenTimeAndCurrentTime = MINUTES.between(openingTime, currentTime);
+        long differentCurrentTimeAndClosingTime = MINUTES.between(currentTime, closingTime);
+        return differentOpenTimeAndCurrentTime > 0  && differentCurrentTimeAndClosingTime >= 0;
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }

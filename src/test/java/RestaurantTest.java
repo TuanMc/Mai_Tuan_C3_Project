@@ -26,24 +26,20 @@ class RestaurantTest {
     //-------FOR THE 2 TESTS BELOW, YOU MAY USE THE CONCEPT OF MOCKING, IF YOU RUN INTO ANY TROUBLE
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
-        Restaurant mockRestaurant = Mockito.mock(Restaurant.class);
-        Mockito.when(mockRestaurant.openingTime).thenReturn(LocalTime.parse("10:30:00"));
-        Mockito.when(mockRestaurant.closingTime).thenReturn(LocalTime.parse("22:00:00"));
+        Restaurant mockRestaurant = Mockito.spy(restaurant);
         Mockito.when(mockRestaurant.getCurrentTime()).thenReturn(LocalTime.parse("21:59:00"));
 
         assertTrue(mockRestaurant.isRestaurantOpen());
-        Mockito.verify(mockRestaurant, Mockito.times(2)).getCurrentTime();
+        Mockito.verify(mockRestaurant, Mockito.times(1)).getCurrentTime();
     }
 
     @Test
     public void is_restaurant_open_should_return_false_if_time_is_outside_opening_and_closing_time(){
-        Restaurant mockRestaurant = Mockito.mock(Restaurant.class);
-        Mockito.when(mockRestaurant.openingTime).thenReturn(LocalTime.parse("10:30:00"));
-        Mockito.when(mockRestaurant.closingTime).thenReturn(LocalTime.parse("22:00:00"));
+        Restaurant mockRestaurant = Mockito.spy(restaurant);
         Mockito.when(mockRestaurant.getCurrentTime()).thenReturn(LocalTime.parse("10:29:00"));
 
         assertFalse(mockRestaurant.isRestaurantOpen());
-        Mockito.verify(mockRestaurant, Mockito.times(2)).getCurrentTime();
+        Mockito.verify(mockRestaurant, Mockito.times(1)).getCurrentTime();
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
