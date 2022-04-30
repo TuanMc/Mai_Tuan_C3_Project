@@ -77,7 +77,7 @@ class RestaurantTest {
     }
 
     @Test
-    public void selecting_items_from_menu_should_return_total_price() {
+    public void selecting_all_items_from_menu_should_return_total_price() {
         List<String> selectedItems = new ArrayList<>();
         selectedItems.add("Sweet corn soup");
         selectedItems.add("Vegetable lasagne");
